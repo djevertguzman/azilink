@@ -40,7 +40,7 @@ import android.util.Log;
  * process space than the UI to protect the network code from UI crashes.
  * 
  * @author Jim Perry
- *
+ *Starcom 2016 Edit: Remember to rewrite setEventINfo that were commented out.
  */
 public class ForwardService extends Service implements VpnNatEngineNotify {
 	/** The actual NAT engine. */
@@ -98,14 +98,18 @@ public class ForwardService extends Service implements VpnNatEngineNotify {
 		// mPower = (PowerManager) getSystemService( Context.POWER_SERVICE );
 		// mPowerLock = mPower.newWakeLock( PowerManager.PARTIAL_WAKE_LOCK, "AziLink" );		
 
-		Notification not = new Notification(R.drawable.notify, getString(R.string.notify), 0);
+		Notification not = new Notification.Builder(this)
+		.setContentText(getString(R.string.notify))
+		.setSmallIcon(R.drawable.notify)
+		.setWhen(0)
+		.build();
 		
 		CharSequence contentTitle = getString(R.string.notify);
 		CharSequence contentText = "";
 		Intent notificationIntent = new Intent(this, MainActivity.class);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 		
-		not.setLatestEventInfo(this, contentTitle, contentText, contentIntent);
+		//not.setLatestEventInfo(this, contentTitle, contentText, contentIntent);
 		not.flags = Notification.FLAG_NO_CLEAR |
 					Notification.FLAG_ONGOING_EVENT;
 
@@ -201,7 +205,7 @@ public class ForwardService extends Service implements VpnNatEngineNotify {
 		Notification n = new Notification(R.drawable.icon, getText(R.string.error_desc), System.currentTimeMillis() );
 		PendingIntent contentIntent = PendingIntent.getActivity(ForwardService.this, 0, 
 				new Intent(ForwardService.this, MainActivity.class), 0);
-		n.setLatestEventInfo(ForwardService.this, getText(R.string.error_label), getText(R.string.error_desc), contentIntent);
+		//n.setLatestEventInfo(ForwardService.this, getText(R.string.error_label), getText(R.string.error_desc), contentIntent);
 		nm.notify(R.string.error_label, n); 
 	}
 

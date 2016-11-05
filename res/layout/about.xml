@@ -18,15 +18,15 @@
 		<TextView android:id="@+id/about_body" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:text="@string/about_howto"
 				android:paddingTop="10dip" />
-				
+
+		<TextView android:id="@+id/about_body" android:layout_width="456dp"
+			android:layout_height="wrap_content" android:text="@string/about_config"
+				android:paddingTop="10dip" />
+
 		<TextView android:id="@+id/about_header" android:layout_height="wrap_content"
 			android:layout_width="fill_parent" android:text="@string/about_header_config"
 				android:paddingTop="20dip" android:textAppearance="?android:attr/textAppearanceMedium" />
-			
-		<TextView android:id="@+id/about_body" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="@string/about_config"
-				android:paddingTop="10dip" />
-				
+
 		<TextView android:id="@+id/about_header" android:layout_height="wrap_content"
 			android:layout_width="fill_parent" android:text="@string/about_header_notes"
 				android:paddingTop="20dip" android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -34,6 +34,14 @@
 		<TextView android:id="@+id/about_body" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:text="@string/about_notes"
 				android:paddingTop="10dip" />
+
+		<TextView android:id="@+id/about_header" android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:text="@string/about_header_notes_2"
+			android:paddingTop="20dip" android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		<TextView android:id="@+id/about_body" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/about_notes_origin"
+			android:paddingTop="10dip" />
 				
 		<Button android:layout_height="wrap_content" android:text="Ok" android:layout_width="fill_parent" android:id="@+id/Return"></Button>
 	

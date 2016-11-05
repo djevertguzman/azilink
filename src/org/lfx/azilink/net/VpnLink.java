@@ -237,7 +237,7 @@ public class VpnLink extends SocketHandler {
 		}
 		setPingTimer();
 		mOutput.order( ByteOrder.BIG_ENDIAN );
-		mOutput.putShort( (short)(length) );
+		mOutput.putShort(length);
 		mOutput.put( d, 0, length );
 		mOutput.flip();
 		try {

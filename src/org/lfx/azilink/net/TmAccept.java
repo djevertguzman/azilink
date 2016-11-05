@@ -57,8 +57,8 @@ public class TmAccept {
 		Log.v("AziLink", key.toString() + " is in table");
 		mTable.put(key,now + 30000);
 		return true;
-	};
-	
+	}
+
 	/**
 	 * Add a key to the timer table.
 	 * @param key ip addresses

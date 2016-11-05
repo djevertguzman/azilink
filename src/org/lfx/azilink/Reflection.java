@@ -37,34 +37,36 @@ public class Reflection {
 	private static Method mStartForeground;
 	private static Method mStopForeground;
 	public static final int NOTIFY_ID = 1;
-	
+
 	static {
 		try {
 			Class sysProp = Class.forName("android.os.SystemProperties");
 			mSystemProperties_get = sysProp.getMethod("get",
-					new Class[] { String.class } );			
+					String.class);
 		} catch(ClassNotFoundException c) {
 		} catch(NoSuchMethodException e) {
 		}
 		
 		try {
 			mStartForeground = android.app.Service.class.getMethod("startForeground",
-					new Class[] { int.class, Notification.class } );			
+					int.class, Notification.class);
 		} catch(NoSuchMethodException e) {
 		}
 		
 		try {
 			mStopForeground = android.app.Service.class.getMethod("stopForeground",
-					new Class[] { boolean.class } );			
+					boolean.class);
 		} catch(NoSuchMethodException e) {
 		}
 	}
 	
 	/**
-	 * Android 2.0 ignores setForeground, so we need both codepaths here.
+	 * Android 2.0 ignores setForeground,
 	 * 
 	 * @param service Service that's going in the foreground
 	 * @param notify Notification to display while running
+	 * Starcom 2016 Edit: setForeground completly removed, Anything under
+	 * Api 5 is no longer supported.
 	 */
 	public static void startForeground(Service service, Notification notify) {
 		if(mStartForeground != null) {
@@ -74,10 +76,6 @@ public class Reflection {
 			} catch (IllegalAccessException e) {
 			} catch (InvocationTargetException e) {
 			}
-		} else {
-			service.setForeground(true);
-			NotificationManager nm = (NotificationManager) service.getSystemService(Context.NOTIFICATION_SERVICE);
-			nm.notify(NOTIFY_ID, notify);
 		}
 	}
 	
@@ -95,26 +93,23 @@ public class Reflection {
 			} catch (IllegalAccessException e) {
 			} catch (InvocationTargetException e) {
 			}
-		} else {
-			service.setForeground(false);
-			NotificationManager nm = (NotificationManager) service.getSystemService(Context.NOTIFICATION_SERVICE);
-			nm.cancel(NOTIFY_ID);
 		}
 	}
 	
 	/**
 	 * Returns the current DNS server, or 4.2.2.2 if one couldn't be found.
+	 * Starcom 2016 Edit: Changed DNS Server to Google's Public DNS.
 	 */
 	public static String getDNS() {
 		if(mSystemProperties_get == null) {
-			return "4.2.2.2";
+			return "8.8.4.4";
 		}
 		try {
 			String dns = (String) mSystemProperties_get.invoke(null, "net.dns1");
 			if(dns != "") return dns;
-			return "4.2.2.2";
+			return "8.8.4.4";
 		} catch(Exception mye) {
-			return "4.2.2.2";
+			return "8.8.4.4";
 		}
 	}
 }

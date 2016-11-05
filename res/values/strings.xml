@@ -75,6 +75,14 @@
 		hosts do not respond to UDP ping requests.\n
 		\n
 	</string>
+	<string name="about_header_notes_2">About - Project</string>
+	<string name="about_notes_origin">
+		The Azilink Project has been taken up by Evert Guzman from The Starcom Project
+		https://starcomproj.com/. This Project was originally developed by Jim Perry
+		back in 2009 but he has since abandoned the project. So, i have adopted it!
+		\n
+		\n
+	</string>
 <string name="pref_key_ping">pref_key_ping</string>
 <string name="pref_title_ping">OpenVPN ping timeouts</string>
 <string name="pref_desc_ping">Close VPN if no ping within 30 seconds</string>

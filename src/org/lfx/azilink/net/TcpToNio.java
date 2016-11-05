@@ -66,8 +66,8 @@ public class TcpToNio extends SocketHandler implements TcpDriverCallback, TimerC
 		STATE_CONNECT_MAYBE,
 		/** Connection is established */
 		STATE_CONNECTED
-	};
-	
+	}
+
 	/**
 	 * Construct a new link between the tcp driver and a socket.  Cannot use class until setDriver has been called.
 	 * 

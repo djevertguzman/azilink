@@ -33,3 +33,8 @@ Configuration steps:
 
 3) Right click AziLink.ovpn on the host (not in the web browser!) and select "Start OpenVPN on this configuration file." You can find this file at: http://lfx.org/azilink/azilink.ovpn. If you're using Linux or, god forbid, MacOS, you'll also need to manually set the nameserver to 192.168.56.1 (the phone's NAT IP address).  This address is automatically forwarded to the phone's current DNS server.
 
+Forks:
+
+https://github.com/aziwoqpd/azilink
+https://github.com/djevertguzman/azilink
+https://github.com/eugenesan/azilink

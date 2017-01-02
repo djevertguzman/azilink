@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.lfx.azilink"
     android:versionCode="4"
-    android:versionName="2.0.3">
+    android:versionName="2.0.4">
 
     <application
         android:icon="@drawable/icon"
@@ -17,7 +17,13 @@
         </activity>
         <service
             android:name=".ForwardService"
-            android:process="org.lfx.azilink.net"></service>
+            android:process="org.lfx.azilink"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="org.lfx.azilink.ForwardService" />
+            </intent-filter>
+        </service>
         <activity android:name=".AboutActivity"></activity>
         <receiver android:name=".BootActivity">
             <intent-filter>

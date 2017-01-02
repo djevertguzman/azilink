@@ -23,53 +23,51 @@ import android.os.Parcelable;
 /**
  * Passes link statistics from the service module to the UI module.  Parcelable support
  * is required since the UI and service are in different processes.
- * 
- * @author Jim Perry
  *
+ * @author Jim Perry
  */
 public final class LinkStatistics implements Parcelable {
-	public long mBytesRecv = 0;
-	public long mBytesSent = 0;
-	public long mBytesTotal = 0;
-	public long mTcpConnections = 0;
-	public long mUdpConnections = 0;
-	public String mStatus = "";
+    public static final Parcelable.Creator<LinkStatistics> CREATOR =
+            new Parcelable.Creator<LinkStatistics>() {
 
-	public int describeContents() {
-		return 0;
-	}
-	
-	public static final Parcelable.Creator<LinkStatistics> CREATOR = 
-			new Parcelable.Creator<LinkStatistics>() {
-		
-		public LinkStatistics createFromParcel(Parcel in) {
-			return new LinkStatistics(in);
-		}
-		
-		public LinkStatistics[] newArray(int size) {
-			return new LinkStatistics[size];
-		}
-	};
-	
-	private LinkStatistics(Parcel in) {
-		mBytesRecv = in.readLong();
-		mBytesSent = in.readLong();
-		mBytesTotal = in.readLong();
-		mTcpConnections = in.readLong();
-		mUdpConnections = in.readLong();
-		mStatus = in.readString();
-	}
+                public LinkStatistics createFromParcel(Parcel in) {
+                    return new LinkStatistics(in);
+                }
 
-	public LinkStatistics() {
-	}
+                public LinkStatistics[] newArray(int size) {
+                    return new LinkStatistics[size];
+                }
+            };
+    public long mBytesRecv = 0;
+    public long mBytesSent = 0;
+    public long mBytesTotal = 0;
+    public long mTcpConnections = 0;
+    public long mUdpConnections = 0;
+    public String mStatus = "";
 
-	public void writeToParcel(Parcel out, int flags) {
-		out.writeLong(mBytesRecv);
-		out.writeLong(mBytesSent);
-		out.writeLong(mBytesTotal);
-		out.writeLong(mTcpConnections);
-		out.writeLong(mUdpConnections);
-		out.writeString(mStatus);
-	}
+    private LinkStatistics(Parcel in) {
+        mBytesRecv = in.readLong();
+        mBytesSent = in.readLong();
+        mBytesTotal = in.readLong();
+        mTcpConnections = in.readLong();
+        mUdpConnections = in.readLong();
+        mStatus = in.readString();
+    }
+
+    public LinkStatistics() {
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeLong(mBytesRecv);
+        out.writeLong(mBytesSent);
+        out.writeLong(mBytesTotal);
+        out.writeLong(mTcpConnections);
+        out.writeLong(mUdpConnections);
+        out.writeString(mStatus);
+    }
 
 }

@@ -19,22 +19,25 @@ package org.lfx.azilink.net;
 
 /**
  * src/dest ip/port key for UDP connections
- * 
- * @author Jim Perry
  *
+ * @author Jim Perry
  */
 public class UdpKey {
-	@Override public boolean equals(Object k) {
-		if( this == k ) return true;
-		if( !(k instanceof UdpKey) ) return false;
-		UdpKey rk = (UdpKey) k;
-		return mSrcIp==rk.mSrcIp && mDestIp==rk.mDestIp && mSrcPort==rk.mSrcPort && mDestPort==rk.mDestPort;
-	}
-	@Override public int hashCode() {
-		return ((mSrcPort&0xFFFF)<<16) | (mDestPort&0xFFFF);
-	}
-	int mSrcIp = 0;
-	int mDestIp = 0;
-	int mSrcPort= 0;
-	int mDestPort = 0;
+    int mSrcIp = 0;
+    int mDestIp = 0;
+    int mSrcPort = 0;
+    int mDestPort = 0;
+
+    @Override
+    public boolean equals(Object k) {
+        if (this == k) return true;
+        if (!(k instanceof UdpKey)) return false;
+        UdpKey rk = (UdpKey) k;
+        return mSrcIp == rk.mSrcIp && mDestIp == rk.mDestIp && mSrcPort == rk.mSrcPort && mDestPort == rk.mDestPort;
+    }
+
+    @Override
+    public int hashCode() {
+        return ((mSrcPort & 0xFFFF) << 16) | (mDestPort & 0xFFFF);
+    }
 }

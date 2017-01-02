@@ -19,22 +19,25 @@ package org.lfx.azilink.net;
 
 /**
  * Key for TCP links; holds src/dest IP/port. Used to look up a connection in the hash table.
- * 
- * @author Jim Perry
  *
+ * @author Jim Perry
  */
 public class TcpKey {
-	@Override public boolean equals(Object k) {
-		if( this == k ) return true;
-		if( !(k instanceof TcpKey) ) return false;
-		TcpKey rk = (TcpKey) k;
-		return mSrcIp==rk.mSrcIp && mDestIp==rk.mDestIp && mSrcPort==rk.mSrcPort && mDestPort==rk.mDestPort;
-	}
-	@Override public int hashCode() {
-		return ((mSrcPort&0xFFFF)<<16) | (mDestPort&0xFFFF);
-	}
-	int mSrcIp = 0;
-	int mDestIp = 0;
-	int mSrcPort= 0;
-	int mDestPort = 0;
+    int mSrcIp = 0;
+    int mDestIp = 0;
+    int mSrcPort = 0;
+    int mDestPort = 0;
+
+    @Override
+    public boolean equals(Object k) {
+        if (this == k) return true;
+        if (!(k instanceof TcpKey)) return false;
+        TcpKey rk = (TcpKey) k;
+        return mSrcIp == rk.mSrcIp && mDestIp == rk.mDestIp && mSrcPort == rk.mSrcPort && mDestPort == rk.mDestPort;
+    }
+
+    @Override
+    public int hashCode() {
+        return ((mSrcPort & 0xFFFF) << 16) | (mDestPort & 0xFFFF);
+    }
 }

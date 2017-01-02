@@ -19,20 +19,23 @@ package org.lfx.azilink.net;
 
 /**
  * Key for ICMP entries in the connection NAT table.  Stores src and dest IP address.
- * 
- * @author Jim Perry
  *
+ * @author Jim Perry
  */
 public class IcmpKey {
-	@Override public boolean equals(Object k) {
-		if( this == k ) return true;
-		if( !(k instanceof UdpKey) ) return false;
-		UdpKey rk = (UdpKey) k;
-		return mSrcIp==rk.mSrcIp && mDestIp==rk.mDestIp;
-	}
-	@Override public int hashCode() {
-		return ((mSrcIp&0xFFFF)<<16) | (mDestIp&0xFFFF);
-	}
-	int mSrcIp = 0;
-	int mDestIp = 0;	
+    int mSrcIp = 0;
+    int mDestIp = 0;
+
+    @Override
+    public boolean equals(Object k) {
+        if (this == k) return true;
+        if (!(k instanceof UdpKey)) return false;
+        UdpKey rk = (UdpKey) k;
+        return mSrcIp == rk.mSrcIp && mDestIp == rk.mDestIp;
+    }
+
+    @Override
+    public int hashCode() {
+        return ((mSrcIp & 0xFFFF) << 16) | (mDestIp & 0xFFFF);
+    }
 }

@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">AziLink</string>
-	<string name="status_unknown">Service is not running!</string>
-	<string name="status_listen">Waiting for connection</string>
-	<string name="status_active">Connected to host</string>
-	<string name="pref_title_tcpconn">TCP connections</string>
-	<string name="pref_title_bytesrecv">Bytes received</string>
-	<string name="pref_title_bytessent">Bytes sent</string>
-	<string name="pref_title_bytestotal">Bytes total</string>
-	<string name="pref_title_active">Service active</string>
-	<string name="pref_title_status">Status</string>
-	<string name="pref_title_natsize">NAT table size</string>
-	<string name="error_label">AziLink Error</string>
-	<string name="error_desc">AziLink was halted</string>
-	<string name="pref_key_tcpconn">pref_key_tcpconn</string>
-	<string name="pref_key_bytesrecv">pref_key_bytesrecv</string>
-	<string name="pref_key_bytessent">pref_key_bytessent</string>
-	<string name="pref_key_bytestotal">pref_key_bytestotal</string>
-	<string name="pref_key_natsize">pref_key_natsize</string>
-	<string name="pref_key_active">pref_key_active</string>
-	<string name="pref_key_status">pref_key_status</string>
-	<string name="pref_title_config">Advanced settings</string>
-	<string name="pref_title_about">About</string>
-	<string name="pref_title_tmobile">T-Mobile proxy fix</string>
-	<string name="pref_key_tmobile">pref_key_tmobile</string>
-	<string name="pref_title_tmobile_ms">T-Mobile fix timeout (ms)</string>
-	<string name="pref_key_tmobile_ms">pref_key_tmobile_ms</string>
-	<string name="pref_key_reset">pref_key_reset</string>
-	<string name="pref_title_reset">Reset byte counters</string>
-	<string name="pref_key_autodisconnect">pref_key_autodisconnect</string>
-	<string name="pref_title_autodisconnect">Close on vpn failure</string>
+    <string name="app_name">AziLink</string>
+    <string name="status_unknown">Service is not running!</string>
+    <string name="status_listen">Waiting for connection</string>
+    <string name="status_active">Connected to host</string>
+    <string name="pref_title_tcpconn">TCP connections</string>
+    <string name="pref_title_bytesrecv">Bytes received</string>
+    <string name="pref_title_bytessent">Bytes sent</string>
+    <string name="pref_title_bytestotal">Bytes total</string>
+    <string name="pref_title_active">Service active</string>
+    <string name="pref_title_status">Status</string>
+    <string name="pref_title_natsize">NAT table size</string>
+    <string name="error_label">AziLink Error</string>
+    <string name="error_desc">AziLink was halted</string>
+    <string name="pref_key_tcpconn">pref_key_tcpconn</string>
+    <string name="pref_key_bytesrecv">pref_key_bytesrecv</string>
+    <string name="pref_key_bytessent">pref_key_bytessent</string>
+    <string name="pref_key_bytestotal">pref_key_bytestotal</string>
+    <string name="pref_key_natsize">pref_key_natsize</string>
+    <string name="pref_key_active">pref_key_active</string>
+    <string name="pref_key_status">pref_key_status</string>
+    <string name="pref_title_config">Advanced settings</string>
+    <string name="pref_title_about">About</string>
+    <string name="pref_title_tmobile">T-Mobile proxy fix</string>
+    <string name="pref_key_tmobile">pref_key_tmobile</string>
+    <string name="pref_title_tmobile_ms">T-Mobile fix timeout (ms)</string>
+    <string name="pref_key_tmobile_ms">pref_key_tmobile_ms</string>
+    <string name="pref_key_reset">pref_key_reset</string>
+    <string name="pref_title_reset">Reset byte counters</string>
+    <string name="pref_key_autodisconnect">pref_key_autodisconnect</string>
+    <string name="pref_title_autodisconnect">Close on vpn failure</string>
 	<string name="pref_desc_autodisconnect">Automatically close all connections
 		when the VPN link fails</string>
-	<string name="pref_desc_tmobile_ms">Try to detect falsely accepted connections</string>
-	<string name="pref_key_about">pref_key_about</string>
-	<string name="pref_key_saved_bytessent">pref_key_saved_bytessent</string>
-	<string name="pref_key_saved_bytesrecv">pref_key_saved_bytesrecv</string>
-	<string name="pref_key_saved_bytestotal">pref_key_saved_bytestotal</string>	
-	<string name="about_header">About AziLink</string>
+    <string name="pref_desc_tmobile_ms">Try to detect falsely accepted connections</string>
+    <string name="pref_key_about">pref_key_about</string>
+    <string name="pref_key_saved_bytessent">pref_key_saved_bytessent</string>
+    <string name="pref_key_saved_bytesrecv">pref_key_saved_bytesrecv</string>
+    <string name="pref_key_saved_bytestotal">pref_key_saved_bytestotal</string>
+    <string name="about_header">About AziLink</string>
 	<string name="about_howto">
 		This program simulates an unencrypted OpenVPN server on port 41927.\n
 		\n
@@ -49,7 +49,7 @@
 		4) Right click AziLink.ovpn on the host and select \"Start OpenVPN on this configuration file\".
 		   A copy of this text file appears below.
 	</string>
-	<string name="about_header_config">Host OpenVPN configuration</string>
+    <string name="about_header_config">Host OpenVPN configuration</string>
 	<string name="about_config">
 		dev tun\n
 		remote 127.0.0.1 41927 tcp-client\n
@@ -60,7 +60,7 @@
 		keepalive 10 30\n
 		dhcp-option DNS 192.168.56.1\n
 	</string>
-	<string name="about_header_notes">Notes</string>
+    <string name="about_header_notes">Notes</string>
 	<string name="about_notes">
 		T-Mobile\'s transparent proxy automatically accepts all outgoing connections.
 		This can sometimes create a problem when the target server refuses a connection,
@@ -75,7 +75,7 @@
 		hosts do not respond to UDP ping requests.\n
 		\n
 	</string>
-	<string name="about_header_notes_2">About - Project</string>
+    <string name="about_header_notes_2">About - Project</string>
 	<string name="about_notes_origin">
 		The Azilink Project has been taken up by Evert Guzman from The Starcom Project
 		https://starcomproj.com/. This Project was originally developed by Jim Perry
@@ -83,9 +83,9 @@
 		\n
 		\n
 	</string>
-<string name="pref_key_ping">pref_key_ping</string>
-<string name="pref_title_ping">OpenVPN ping timeouts</string>
-<string name="pref_desc_ping">Close VPN if no ping within 30 seconds</string>
+    <string name="pref_key_ping">pref_key_ping</string>
+    <string name="pref_title_ping">OpenVPN ping timeouts</string>
+    <string name="pref_desc_ping">Close VPN if no ping within 30 seconds</string>
 
-<string name="notify">AziLink running</string>
+    <string name="notify">AziLink running</string>
 </resources>

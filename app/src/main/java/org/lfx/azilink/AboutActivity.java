@@ -29,40 +29,39 @@ import android.widget.TextView;
 
 /**
  * AboutActivity displays author and version information to the user.
- * 
- * @author Jim Perry
  *
+ * @author Jim Perry
  */
-public class AboutActivity extends Activity {	
-	
-	/**
-	 * Retrieves the current version from the Android manifest and places it in the dialog.
-	 */
-	public void onCreate(Bundle saved) {
-		super.onCreate(saved);
-		setContentView(R.layout.about);
-		
-		Button ok = (Button) findViewById(R.id.Return);
-		ok.setOnClickListener(mReturn);
-		
-		PackageManager pm = getPackageManager();
-		String version = "version unknown";
-		try {
-			PackageInfo pi = pm.getPackageInfo("org.lfx.azilink", 0);
-			version = pi.versionName;
-		} catch (NameNotFoundException e) {
-		}
-		
-		TextView ver = (TextView) findViewById(R.id.about_version_tag);
-		ver.setText("AziLink " + version + " by Evert Guzman" + "\n" + "\n2016 The Starcom Project");
-	}
-	
-	/**
-	 * Closes the dialog when the user hits the return button.
-	 */
-	private OnClickListener mReturn = new OnClickListener() {
-		public void onClick(View v) {
-			finish();
-		}		
-	};
+public class AboutActivity extends Activity {
+
+    /**
+     * Closes the dialog when the user hits the return button.
+     */
+    private OnClickListener mReturn = new OnClickListener() {
+        public void onClick(View v) {
+            finish();
+        }
+    };
+
+    /**
+     * Retrieves the current version from the Android manifest and places it in the dialog.
+     */
+    public void onCreate(Bundle saved) {
+        super.onCreate(saved);
+        setContentView(R.layout.about);
+
+        Button ok = (Button) findViewById(R.id.Return);
+        ok.setOnClickListener(mReturn);
+
+        PackageManager pm = getPackageManager();
+        String version = "version unknown";
+        try {
+            PackageInfo pi = pm.getPackageInfo("org.lfx.azilink", 0);
+            version = pi.versionName;
+        } catch (NameNotFoundException e) {
+        }
+
+        TextView ver = (TextView) findViewById(R.id.about_version_tag);
+        ver.setText("AziLink " + version + " by Evert Guzman" + "\n" + "\n2016 The Starcom Project");
+    }
 }

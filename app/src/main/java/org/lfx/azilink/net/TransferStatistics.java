@@ -19,16 +19,15 @@ package org.lfx.azilink.net;
 
 /**
  * Interface that indicates additional bytes have been received/sent.
- * 
- * @author Jim Perry
  *
+ * @author Jim Perry
  */
 public interface TransferStatistics {
-	/**
-	 * Announce new bytes that have been recv/sent.
-	 * 
-	 * @param recv bytes received
-	 * @param sent bytes sent
-	 */
-	void addBytes( int recv, int sent );
+    /**
+     * Announce new bytes that have been recv/sent.
+     *
+     * @param recv bytes received
+     * @param sent bytes sent
+     */
+    void addBytes(int recv, int sent);
 }

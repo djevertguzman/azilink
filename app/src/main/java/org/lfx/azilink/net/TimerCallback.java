@@ -19,13 +19,12 @@ package org.lfx.azilink.net;
 
 /**
  * Callback used by TimerQueue to indicate that a timer has expired.
- * 
- * @author Jim Perry
  *
+ * @author Jim Perry
  */
 public interface TimerCallback {
-	/**
-	 * Timer has expired
-	 */
-	void onTimer();
+    /**
+     * Timer has expired
+     */
+    void onTimer();
 }

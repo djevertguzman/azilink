@@ -23,19 +23,25 @@ import java.nio.channels.SelectionKey;
 
 /**
  * This is a generic interface used by the select() thread to dispatch socket events.
- * 
- * @author Jim Perry
  *
+ * @author Jim Perry
  */
-public class SocketHandler {	
-	public SocketHandler( SelectableChannel ch ) {
-		mChannel = ch;		
-	}
-	
-	public void onAccept( SelectionKey k ) throws IOException {}
-	public void onConnect( SelectionKey k ) throws IOException {}		
-	public void onRead( SelectionKey k ) throws IOException {}		
-	public void onWrite( SelectionKey k ) throws IOException {}	
-	
-	public SelectableChannel mChannel;
+public class SocketHandler {
+    public SelectableChannel mChannel;
+
+    public SocketHandler(SelectableChannel ch) {
+        mChannel = ch;
+    }
+
+    public void onAccept(SelectionKey k) throws IOException {
+    }
+
+    public void onConnect(SelectionKey k) throws IOException {
+    }
+
+    public void onRead(SelectionKey k) throws IOException {
+    }
+
+    public void onWrite(SelectionKey k) throws IOException {
+    }
 }

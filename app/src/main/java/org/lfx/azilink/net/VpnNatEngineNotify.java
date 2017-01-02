@@ -18,7 +18,9 @@
 package org.lfx.azilink.net;
 
 public interface VpnNatEngineNotify {
-	void onLinkEstablished();
-	boolean onLinkLost();
-	void onError( String error );
+    void onLinkEstablished();
+
+    boolean onLinkLost();
+
+    void onError(String error);
 }

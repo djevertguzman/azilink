@@ -19,10 +19,9 @@ package org.lfx.azilink.net;
 
 /**
  * Interface used by the TCP driver to issue packets to the VPN.
- * 
- * @author Jim Perry
  *
+ * @author Jim Perry
  */
 public interface TcpDriverPacketSink {
-	void write(TcpPacket pkt);
+    void write(TcpPacket pkt);
 }

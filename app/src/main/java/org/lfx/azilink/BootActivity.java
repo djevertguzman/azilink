@@ -24,22 +24,22 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 /**
- * When the phone is reboot, restart the service if it was 
- * previously running. 
+ * When the phone is reboot, restart the service if it was
+ * previously running.
  */
 public class BootActivity extends BroadcastReceiver {
-	/**
-	 * If the service was active when the phone powered down, restart it after a reboot.
-	 */
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		if(intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-			boolean needToStart = pref.getBoolean(context.getString(R.string.pref_key_active), false);
-			if(needToStart) {
-				context.startService(new Intent(context, ForwardService.class));
-			}
-		}
-	}
+    /**
+     * If the service was active when the phone powered down, restart it after a reboot.
+     */
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            boolean needToStart = pref.getBoolean(context.getString(R.string.pref_key_active), false);
+            if (needToStart) {
+                context.startService(new Intent(context, ForwardService.class));
+            }
+        }
+    }
 
 }

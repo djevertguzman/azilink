@@ -92,19 +92,18 @@ public class Reflection {
     }
 
     /**
-     * Returns the current DNS server, or 4.2.2.2 if one couldn't be found.
-     * Starcom 2016 Edit: Changed DNS Server to Google's Public DNS.
+     * Returns the current DNS server, or Google's Public DNS if one couldn't be found.
      */
     public static String getDNS() {
         if (mSystemProperties_get == null) {
-            return "8.8.4.4";
+            return "8.8.8.8";
         }
         try {
             String dns = (String) mSystemProperties_get.invoke(null, "net.dns1");
             if (dns != "") return dns;
-            return "8.8.4.4";
+            return "8.8.8.8";
         } catch (Exception mye) {
-            return "8.8.4.4";
+            return "8.8.8.8";
         }
     }
 }

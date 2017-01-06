@@ -58,12 +58,10 @@ public class Reflection {
     }
 
     /**
-     * Android 2.0 ignores setForeground,
+     * Start foreground service
      *
      * @param service Service that's going in the foreground
      * @param notify  Notification to display while running
-     *                Starcom 2016 Edit: setForeground completly removed, Anything under
-     *                Api 5 is no longer supported.
      */
     public static void startForeground(Service service, Notification notify) {
         if (mStartForeground != null) {

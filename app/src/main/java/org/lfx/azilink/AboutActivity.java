@@ -62,6 +62,6 @@ public class AboutActivity extends Activity {
         }
 
         TextView ver = (TextView) findViewById(R.id.about_version_tag);
-        ver.setText("AziLink " + version + " by Evert Guzman" + "\n" + "\n2016 The Starcom Project");
+        ver.setText("AziLink " + version + " (c) 2007-1027 by Jim Perry, Evert Guzman, Jerome Robert and Eugene San");
     }
 }

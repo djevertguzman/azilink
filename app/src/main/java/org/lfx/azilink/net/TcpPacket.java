@@ -39,10 +39,23 @@ public class TcpPacket {
      * @param seq    packet sequence number
      * @param ack    packet acknowledge number
      * @param window window size remaining
+     * @param buffer reusable underlying buffer
+     */
+    TcpPacket(TcpKey nk, long seq, long ack, int window, ByteBuffer buffer) {
+        mRaw = buffer;
+        setBlank(nk, seq, ack, window);
+    }
+
+    /**
+     * Build a new TCP packet with some preloaded values.
+     *
+     * @param nk     src/dest ip/port (REVERSED!)
+     * @param seq    packet sequence number
+     * @param ack    packet acknowledge number
+     * @param window window size remaining
      */
     TcpPacket(TcpKey nk, long seq, long ack, int window) {
-        mRaw = ByteBuffer.allocate(1500);
-        setBlank(nk, seq, ack, window);
+        this(nk, seq, ack, window, ByteBuffer.allocate(1500));
     }
 
     /**
@@ -50,12 +63,12 @@ public class TcpPacket {
      *
      * @param pkt packet
      */
-    TcpPacket(byte[] pkt) {
-        mRaw = ByteBuffer.wrap(pkt);
+    TcpPacket(byte[] pkt, int size) {
+        mRaw = ByteBuffer.wrap(pkt, 0, size);
         mTcpOffset = (((int) mRaw.get(0)) & 0x0F) * 4;
         mDataOffset = mTcpOffset + ((((int) mRaw.get(mTcpOffset + 12)) & 0xF0) >> 2);
         mPacketLength = ((int) mRaw.getShort(2)) & 0xFFFF;
-        if (mPacketLength > pkt.length) mPacketLength = pkt.length;
+        if (mPacketLength > size) mPacketLength = size;
     }
 
     /**

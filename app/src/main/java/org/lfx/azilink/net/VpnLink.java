@@ -102,6 +102,7 @@ public class VpnLink extends SocketHandler {
      */
     private int[] mConfigMagick = new int[]{0x28, 0x7f, 0x34, 0x6b, 0xd4, 0xef, 0x7a, 0x81,
             0x2d, 0x56, 0xb8, 0xd3, 0xaf, 0xc5, 0x45, 0x9c};
+    private byte[] packetBuffer = new byte[592];
 
     /**
      * Construct a new OpenVPN connection
@@ -160,11 +161,12 @@ public class VpnLink extends SocketHandler {
      * Test whether this packet contains an openvpn magic packet.  Surely there is a better way...
      *
      * @param d      packet
+     * @param size   packet size
      * @param magick magic sequence
      * @return whether it's a magic packet
      */
-    private boolean comparePacket(byte[] d, int[] magick) {
-        if (d.length < magick.length) return false;
+    private boolean comparePacket(byte[] d, int size, int[] magick) {
+        if (size < magick.length) return false;
         for (int i = 0; i < magick.length; i++) {
             if ((d[i] & 0xFF) != magick[i]) return false;
         }
@@ -199,16 +201,17 @@ public class VpnLink extends SocketHandler {
                 mInput.reset();
                 break;
             }
-            byte[] packet = new byte[packetLength];
-            mInput.get(packet);
-            if (comparePacket(packet, mPingMagick)) {
+            if (packetBuffer.length < packetLength)
+                packetBuffer = new byte[packetLength];
+            mInput.get(packetBuffer, 0, packetLength);
+            if (comparePacket(packetBuffer, packetLength, mPingMagick)) {
                 if (VpnNatEngine.sLog) Log.v("AziLink", "Ping packet");
                 setDieTimer();
                 continue;
             }
-            if (comparePacket(packet, mConfigMagick)) {
-                if (packet.length == mConfigMagick.length + 1 &&
-                        packet[mConfigMagick.length] == 0) {
+            if (comparePacket(packetBuffer, packetLength, mConfigMagick)) {
+                if (packetLength == mConfigMagick.length + 1 &&
+                        packetBuffer[mConfigMagick.length] == 0) {
                     // The last byte is the command -- zero is configuration request
                     respondWithConfig();
                 } else {
@@ -218,7 +221,7 @@ public class VpnLink extends SocketHandler {
             }
             if (VpnNatEngine.sLog)
                 Log.v("AziLink", "vpnlink::onread upload packet of length " + packetLength);
-            mEngine.vpnRead(packet);
+            mEngine.vpnRead(packetBuffer, packetLength);
         }
         mInput.compact();
 
@@ -254,7 +257,7 @@ public class VpnLink extends SocketHandler {
         }
         setPingTimer();
         mOutput.order(ByteOrder.BIG_ENDIAN);
-        mOutput.putShort(length);
+        mOutput.putShort((short) (length));
         mOutput.put(d, 0, length);
         mOutput.flip();
         try {

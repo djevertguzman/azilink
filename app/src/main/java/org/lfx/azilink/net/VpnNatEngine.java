@@ -254,13 +254,13 @@ public class VpnNatEngine implements TransferStatistics {
      *
      * @param d single ip packet
      */
-    void vpnRead(byte[] d) {
-        if (d.length < 20) {
+    void vpnRead(byte[] d, int size) {
+        if (size < 20) {
             if (VpnNatEngine.sLog) Log.v("AziLink", "Packet under minimum length");
             return;
         }
 
-        ByteBuffer bb = ByteBuffer.wrap(d);
+        ByteBuffer bb = ByteBuffer.wrap(d, 0, size);
         if ((bb.get(0) & 0xF0) != 0x40) {
             if (VpnNatEngine.sLog) Log.v("AziLink", "Incoming packet not IPv4");
             return;
@@ -273,12 +273,12 @@ public class VpnNatEngine implements TransferStatistics {
 
         int protocol = ((int) bb.get(9)) & 0xFF;
         if (protocol == 6) {
-            mTCP.readRawPacket(d);
+            mTCP.readRawPacket(d, size);
         } else if (protocol == 17) {
-            mUDP.readRawPacket(d);
+            mUDP.readRawPacket(d, size);
         } else if (protocol == 1) {
             // send ICMP to UDP (will be rewritten)
-            mUDP.readRawPacket(d);
+            mUDP.readRawPacket(d, size);
         } else {
             if (VpnNatEngine.sLog) Log.v("AziLink", "IP saw unknown protocol " + protocol);
         }

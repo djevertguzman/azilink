@@ -72,12 +72,12 @@ public class IcmpPacket {
      *
      * @param pkt ICMP source packet
      */
-    IcmpPacket(byte[] pkt) {
-        mRaw = ByteBuffer.wrap(pkt);
+    IcmpPacket(byte[] pkt, int size) {
+        mRaw = ByteBuffer.wrap(pkt, 0, size);
         mIcmpOffset = (((int) mRaw.get(0)) & 0x0F) * 4;
         mDataOffset = mIcmpOffset + 8;
         mPacketLength = ((int) mRaw.getShort(2)) & 0xFFFF;
-        if (mPacketLength > pkt.length) mPacketLength = pkt.length;
+        if (mPacketLength > size) mPacketLength = size;
     }
 
     /**

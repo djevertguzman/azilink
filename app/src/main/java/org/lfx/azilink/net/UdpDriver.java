@@ -165,7 +165,8 @@ public class UdpDriver extends SocketHandler implements TimerCallback {
                 if (len > 0) mStats.addBytes(len, 0);
             } catch (IOException e) {
             }
-            IcmpPacket ip = new IcmpPacket(mLastPacket.getData());
+            byte[] p = mLastPacket.getData();
+            IcmpPacket ip = new IcmpPacket(p, p.length);
             ip.swapHosts();
             ip.setType(IcmpPacket.TYPE_ICMP_ECHO_REPLY);
             ip.setCode(IcmpPacket.PROTO_ICMP_ECHO_REPLY);

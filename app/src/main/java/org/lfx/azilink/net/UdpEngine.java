@@ -78,21 +78,21 @@ public class UdpEngine {
      *
      * @param d vpn packet
      */
-    void readRawPacket(byte[] d) {
-        ByteBuffer bb = ByteBuffer.wrap(d);
+    void readRawPacket(byte[] d, int size) {
+        ByteBuffer bb = ByteBuffer.wrap(d, 0, size);
         int headerLength = (((int) bb.get(0)) & 0x0F) * 4;
 
         int protocol = ((int) bb.get(9)) & 0xFF;
         boolean isIcmp = protocol == 1;
 
-        if (d.length < headerLength + 8) {
+        if (size < headerLength + 8) {
             if (VpnNatEngine.sLog) Log.v("AziLink", "Packet under minimum UDP length");
             return;
         }
 
         UdpPacket pkt;
         if (isIcmp) {
-            IcmpPacket ip = new IcmpPacket(d);
+            IcmpPacket ip = new IcmpPacket(d, size);
             if (ip.getType() != IcmpPacket.TYPE_ICMP_ECHO_REQUEST ||
                     ip.getCode() != IcmpPacket.PROTO_ICMP_ECHO_REQUEST) return;
             if (VpnNatEngine.sLog) Log.v("AziLink", "Translate ICMP -> UDP");
@@ -105,7 +105,7 @@ public class UdpEngine {
             pkt = new UdpPacket(nk);        // this will reverse the host/port
             pkt.setData(ip.mRaw.array(), ip.mPacketLength);
         } else {
-            pkt = new UdpPacket(d);
+            pkt = new UdpPacket(d, size);
         }
         UdpKey nk = pkt.getAddresses();
 

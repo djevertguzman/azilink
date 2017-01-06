@@ -55,12 +55,12 @@ public class UdpPacket {
      *
      * @param pkt packet to import (do not alter until UdpPacket is destroyed)
      */
-    UdpPacket(byte[] pkt) {
-        mRaw = ByteBuffer.wrap(pkt);
+    UdpPacket(byte[] pkt, int size) {
+        mRaw = ByteBuffer.wrap(pkt, 0, size);
         mUdpOffset = (((int) mRaw.get(0)) & 0x0F) * 4;
         mDataOffset = mUdpOffset + 8;
         mPacketLength = ((int) mRaw.getShort(2)) & 0xFFFF;
-        if (mPacketLength > pkt.length) mPacketLength = pkt.length;
+        if (mPacketLength > size) mPacketLength = size;
     }
 
     /**

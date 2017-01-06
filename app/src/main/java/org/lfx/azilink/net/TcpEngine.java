@@ -64,16 +64,16 @@ public class TcpEngine implements TcpDriverPacketSink {
      *
      * @param d tcp packet
      */
-    void readRawPacket(byte[] d) {
-        ByteBuffer bb = ByteBuffer.wrap(d);
+    void readRawPacket(byte[] d, int size) {
+        ByteBuffer bb = ByteBuffer.wrap(d, 0, size);
         int headerLength = (((int) bb.get(0)) & 0x0F) * 4;
 
-        if (d.length < headerLength + 20) {
+        if (size < headerLength + 20) {
             if (VpnNatEngine.sLog) Log.v("AziLink", "Packet under minimum TCP length");
             return;
         }
 
-        TcpPacket pkt = new TcpPacket(d);
+        TcpPacket pkt = new TcpPacket(d, size);
         TcpKey nk = pkt.getAddresses();
 
         TcpDriver te = mNat.get(nk);

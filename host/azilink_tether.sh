@@ -18,7 +18,7 @@ if ! adb get-state; then echo "No Android connected"; exit 255; fi
 
 ## Start gateway
 # Enable USB tethering
-adb shell su -c "\"service call connectivity 33 i32 1\""
+#adb shell su -c "\"service call connectivity 33 i32 1\""
 adb wait-for-device
 # Start Azilink UI
 adb shell am start org.lfx.azilink/.MainActivity
@@ -35,7 +35,7 @@ sudo openvpn azilink.ovpn
 ## Stop gateway
 adb wait-for-device
 # Disable USB tethering
-adb shell su -c "\"service call connectivity 33 i32 0\""
-adb wait-for-device
+#adb shell su -c "\"service call connectivity 33 i32 0\""
+#adb wait-for-device
 # Stop Azilink service
 adb shell am stopservice -n org.lfx.azilink/.ForwardService

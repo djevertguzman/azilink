@@ -102,7 +102,18 @@ public class SelectThread implements Runnable {
             ServerSocketChannel fdCmd = ServerSocketChannel.open();
             fdCmd.socket().setReuseAddress(true);
             fdCmd.configureBlocking(false);
-            fdCmd.socket().bind(new InetSocketAddress(InetAddress.getByAddress(new byte[]{127, 0, 0, 1}), 41927));
+
+            /**
+             * Bind to 192.168.4X.1 (Where X is 2 for USB-Ethernet, 3 for WiFi-Hotspot, 4 for BT-PAP. The default is Wifi)
+             * or 127.0.0.1 as a fallback with ADB
+             */
+            try {
+                fdCmd.socket().bind(new InetSocketAddress(InetAddress.getByAddress(new byte[]{(byte) 192, (byte) 168, (byte) 43, (byte) 1}), 41927));
+            } catch (IOException e) {
+                Log.v("AziLink", "SelectThread binding failed: " + e.toString() + ", " + "binding to fallback 127.0.0.1");
+                fdCmd.socket().bind(new InetSocketAddress(InetAddress.getByAddress(new byte[]{(byte) 127, (byte) 0, (byte) 0, (byte) 1}), 41927));
+            }
+
             fdCmd.register(mSelector, SelectionKey.OP_ACCEPT, new SocketHandler(fdCmd) {
                 /**
                  * Notify the VPN engine that a new VPN connection has been made.

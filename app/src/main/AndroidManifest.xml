@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.lfx.azilink"
+    android:versionCode="6"
+    android:versionName="2.0.5">
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name=".ForwardService"
+            android:process="org.lfx.azilink"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="org.lfx.azilink.ForwardService" />
+            </intent-filter>
+        </service>
+        <activity android:name=".AboutActivity"></activity>
+        <receiver android:name=".BootActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <category android:name="android.intent.category.HOME"></category>
+            </intent-filter>
+        </receiver>
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+
+    <uses-sdk android:minSdkVersion="16"></uses-sdk>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+</manifest>

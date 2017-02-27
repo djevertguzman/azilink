@@ -7,7 +7,7 @@ if ! timeout 1 bash -c 'cat < /dev/null > /dev/tcp/192.168.43.1/41927'; then ech
 
 ## Start Pseudo-VPN
 ###
-sudo openvpn azilink_net.ovpn
+sudo openvpn $(dirname ${0})/azilink_net.ovpn
 
 ## Stop gateway
 ###

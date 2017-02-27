@@ -139,12 +139,12 @@ public class SelectThread implements Runnable {
                     mSelector.select();
                 }
 
-                // Main thread is asking is to terminate.
+                // Main thread is asking us to terminate.
                 if (mDie) {
                     break;
                 }
 
-                // If a timeout has occured, then issue callbacks to the relevent classes.
+                // If a timeout has occured, then issue callbacks to the relevant classes.
                 if (SystemClock.elapsedRealtime() >= nextTimeout) {
                     mEngine.mTimers.runTimers();
                 }
